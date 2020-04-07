@@ -5,14 +5,11 @@
     <string name="tested_text_view_label">Number Tested:</string>
     <string name="positive_tests_text_view_label">Number of Positive Tests:</string>
     <string name="deaths_text_view_label">Number of Deaths:</string>
-    <string name="last_updated_text_view_label">Last Updated:</string>
-    <string name="tested_graph_label">Number of Tests vs Positive Cases:</string>
+    <string name="last_updated_text_view_label">Source Last Updated:</string>
     <string name="no_permissions_dialog_text">Location permission denied. Please grant this app access to location data in order to view COVID-19 stats.</string>
     <string name="no_location_data_dialog_message">No recent location data found. Please manually select your state from the drop down list.</string>
-    <string name="no_permissions_dialog_positive_button_text">Whoops, let me take care of that</string>
-    <string name="no_permissions_dialog_negative_button_text">No, thanks. I\'ll choose my state from the drop down list</string>
-    <string name="no_location_data_dialog_positive_button_text">Whoops, let me take care of that</string>
-    <string name="no_location_data_dialog_negative_button_text">No, thanks. I\'ll choose my state from the drop down list</string>
+    <string name="dialog_positive_button_text">Whoops, let me take care of that</string>
+    <string name="dialog_negative_button_text">No, thanks. I\'ll choose my state from the drop down list</string>
     <string-array name="states_array">
         <item>Alabama</item>
         <item>Alaska</item>

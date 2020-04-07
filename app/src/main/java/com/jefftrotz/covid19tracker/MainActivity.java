@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity
     private static final String API_URL = "https://coronavirusapi.com/getTimeSeries/"; // URL for the API used to get per-state COVID-19 data
     private static final String TAG = "COVID-19 Tracker";   // Tag used when logging errors
     private static final String IO_EXCEPTION_TEXT = "IO Exception: ";   // Text fed into the Log.e() method when an IO exception is logged
-    private static final String TESTS_GRAPH_TITLE = "Number Tested vs Positive Tests";  // Title for the tests graph
-    private static final String TIME_GRAPH_TITLE = "Time vs Positive Tests";    // Title for the time graph
-    private static final String DEATHS_GRAPH_TITLE = "Time vs Deaths";  // Title for the deaths graph
+    private static final String TESTS_GRAPH_TITLE = "Total Tests vs. Positive Tests";  // Title for the tests graph
+    private static final String TIME_GRAPH_TITLE = "Time vs. Positive Tests";    // Title for the time graph
+    private static final String DEATHS_GRAPH_TITLE = "Time vs. Deaths";  // Title for the deaths graph
 
     /**
      * Called when the activity is launched
@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity
     {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setMessage(R.string.no_permissions_dialog_text)
-            .setPositiveButton(R.string.no_permissions_dialog_positive_button_text, new DialogInterface.OnClickListener()
+            .setPositiveButton(R.string.dialog_positive_button_text, new DialogInterface.OnClickListener()
             {
                 // If the positive button is clicked, launch settings so the user can grant location permissions
                 public void onClick(DialogInterface dialog, int id)
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity
                     startActivityForResult(new Intent(Settings.ACTION_APPLICATION_SETTINGS), 0);
                 }
             })
-            .setNegativeButton(R.string.no_permissions_dialog_negative_button_text, new DialogInterface.OnClickListener()
+            .setNegativeButton(R.string.dialog_negative_button_text, new DialogInterface.OnClickListener()
             {
                 // If the negative button is clicked, close the alert dialog
                 public void onClick(DialogInterface dialog, int id)
@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity
     {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setMessage(R.string.no_location_data_dialog_message)
-            .setPositiveButton(R.string.no_location_data_dialog_positive_button_text, new DialogInterface.OnClickListener()
+            .setPositiveButton(R.string.dialog_positive_button_text, new DialogInterface.OnClickListener()
             {
                 // If the positive button is clicked, launch settings so the user can grant location permissions
                 public void onClick(DialogInterface dialog, int id)
@@ -284,7 +284,7 @@ public class MainActivity extends AppCompatActivity
                     startActivityForResult(new Intent(Settings.ACTION_APPLICATION_SETTINGS), 0);
                 }
             })
-            .setNegativeButton(R.string.no_location_data_dialog_negative_button_text, new DialogInterface.OnClickListener()
+            .setNegativeButton(R.string.dialog_negative_button_text, new DialogInterface.OnClickListener()
             {
                 // If the negative button is clicked, close the alert dialog
                 public void onClick(DialogInterface dialog, int id)
@@ -445,6 +445,11 @@ public class MainActivity extends AppCompatActivity
                 arrayIndex++;
             }
 
+            System.out.println("Time: " + covidData[numOfCommas - 4]);
+            System.out.println("Tests: " + covidData[numOfCommas - 3]);
+            System.out.println("Positive: " + covidData[numOfCommas - 2]);
+            System.out.println("Deaths: " + covidData[numOfCommas - 1]);
+
             // Call methods to load data into the graphs and update the app's UI
             // (created separate methods to save space in this method)
             this.loadTestsGraph(numOfCommas, covidData);
@@ -539,7 +544,7 @@ public class MainActivity extends AppCompatActivity
                 // Set manual X & Y bounds to have nice steps
                 mTimeGraph.getViewport().setMinX(dates[9].getTime());
                 mTimeGraph.getViewport().setMaxX(dates[0].getTime());
-                mTimeGraph.getViewport().setMinY(Long.parseLong(data[commas - 74]));
+                mTimeGraph.getViewport().setMinY(Long.parseLong(data[commas - 38]));
                 mTimeGraph.getViewport().setMaxY(Long.parseLong(data[commas - 2]));
 
                 // Add the series of data points to the graph
@@ -587,7 +592,7 @@ public class MainActivity extends AppCompatActivity
                 // Set manual X & Y bounds to have nice steps
                 mDeathsGraph.getViewport().setMinX(dates[9].getTime());
                 mDeathsGraph.getViewport().setMaxX(dates[0].getTime());
-                mDeathsGraph.getViewport().setMinY(Long.parseLong(data[commas - 73]));
+                mDeathsGraph.getViewport().setMinY(Long.parseLong(data[commas - 37]));
                 mDeathsGraph.getViewport().setMaxY(Long.parseLong(data[commas - 1]));
 
                 // Add the series of data points to the graph
